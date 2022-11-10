@@ -5,4 +5,9 @@
     <string name="menu_reels">Reels</string>
     <string name="menu_store">Store</string>
     <string name="menu_profile">Profile</string>
+    <string name="hello_home_fragment">Hello home fragment</string>
+    <string name="hello_search_fragment">Hello search fragment</string>
+    <string name="hello_reels_fragment">Hello reels fragment</string>
+    <string name="hello_store_fragment">Hello store fragment</string>
+    <string name="hello_profile_fragment">Hello profile fragment</string>
 </resources>
