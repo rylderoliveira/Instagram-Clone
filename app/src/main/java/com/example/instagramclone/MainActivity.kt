@@ -1,6 +1,7 @@
 package com.example.instagramclone
 
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -15,7 +16,7 @@ import com.example.instagramclone.ui.store.StoreFragment
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val stack = mutableListOf<Fragment>()
+    private val backStackFragments = mutableListOf<Fragment>()
     private val homeFragment = HomeFragment()
     private val searchFragment = SearchFragment()
     private val reelsFragment = ReelsFragment()
@@ -29,7 +30,8 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.commit {
             replace(R.id.fragment_container_view_main, homeFragment)
             setReorderingAllowed(true)
-            stack.add(homeFragment)
+            supportActionBar?.title = getString(R.string.app_name)
+            backStackFragments.add(homeFragment)
         }
         binding.bottomNavigationViewMain.setOnItemSelectedListener {
             val currentItemSelected = binding.bottomNavigationViewMain.selectedItemId
@@ -46,11 +48,11 @@ class MainActivity : AppCompatActivity() {
         }
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                stack.removeLast()
-                if (stack.isEmpty()) {
+                backStackFragments.removeLast()
+                if (backStackFragments.isEmpty()) {
                     finish()
                 } else {
-                    loadFragment(stack.last())
+                    loadFragment(backStackFragments.last())
                 }
             }
         })
@@ -60,14 +62,21 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.commit {
             replace(R.id.fragment_container_view_main, fragment)
             setReorderingAllowed(true)
-            if (stack.last() != fragment) {
-                stack.add(fragment)
+            if (backStackFragments.last() != fragment) {
+                backStackFragments.add(fragment)
             }
         }
         val itemId = getMenuItemByFragment(fragment)
         itemId?.let {
-            binding.bottomNavigationViewMain.menu.findItem(it).isChecked = true
+            val item = binding.bottomNavigationViewMain.menu.findItem(it)
+            item.isChecked = true
+            setActionBarTitle(item)
         }
+    }
+
+    private fun setActionBarTitle(item: MenuItem) {
+        if (item.itemId == R.id.menu_home) supportActionBar?.title = getString(R.string.app_name)
+        else supportActionBar?.title = item.title
     }
 
     private fun getMenuItemByFragment(fragment: Fragment): Int? {
