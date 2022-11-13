@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_default_vertical">8dp</dimen>
+    <dimen name="margin_default_horizontal">12dp</dimen>
+    <dimen name="width_small">24dp</dimen>
+    <dimen name="height_small">24dp</dimen>
+</resources>
