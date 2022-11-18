@@ -14,20 +14,26 @@ data class Post(
     val id: Int,
 
     @SerializedName("media_type")
-    val media_type: String,
+    val mediaType: String,
 
     @SerializedName("media_url")
-    val media_url: String,
+    val mediaUrl: String,
 
     @SerializedName("user_has_stories")
-    val user_has_stories: Boolean,
+    val userHasStories: Boolean,
 
     @SerializedName("user_id")
-    val user_id: Int,
+    val userId: Int,
 
     @SerializedName("user_nickname")
-    val user_nickname: String,
+    val userNickname: String,
 
     @SerializedName("users_likes")
-    val users_likes: List<UsersLike>
+    val usersLikes: List<UsersLike>,
+
+    @SerializedName("description")
+    val description: String,
+
+    @SerializedName("user_photo")
+    val ownerPhotoUrl: String
 ) : Parcelable

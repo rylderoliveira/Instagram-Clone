@@ -36,6 +36,8 @@
         android:src="@drawable/paisagem"
         android:adjustViewBounds="true"
         app:layout_constraintTop_toBottomOf="@id/image_view_post_profile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginVertical="@dimen/margin_default_vertical" />
 
     <ImageButton
@@ -102,7 +104,6 @@
         android:text="rylderoliveira Linda fotografia gostaria de ver mais fotos assim em seu intagram"
         app:layout_constraintTop_toBottomOf="@id/text_view_likes_count"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginVertical="@dimen/margin_default_vertical"
         android:layout_marginHorizontal="@dimen/margin_default_horizontal"/>
 

@@ -2,7 +2,6 @@ package com.example.instagramclone.ui.componentes.postview
 
 import android.content.Context
 import android.graphics.drawable.Drawable
-import android.net.Uri
 import android.text.SpannableStringBuilder
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -23,7 +22,7 @@ class PostView @JvmOverloads constructor(
         const val DEFAULT_PROFILE_NAME = "Usuário do Instagram"
     }
 
-    private lateinit var binding: ViewPostViewBinding
+    private var binding: ViewPostViewBinding
 
     private val defaultIconLikeOutline = getDrawable(R.drawable.ic_like_outline)
     private val defaultIconLikeFilled = getDrawable(R.drawable.ic_like_filled)
@@ -34,21 +33,28 @@ class PostView @JvmOverloads constructor(
         get() = null
         set(value) {
             Glide.with(context)
-                .load(Uri.parse(value))
+                .load(value)
+                .placeholder(R.drawable.paisagem)
+                .error(R.drawable.ic_save_outline)
                 .into(binding.imageViewPostProfile)
         }
 
-    var imageContent: String?
+    var imageUrl: String?
         get() = null
         set(value) {
             Glide.with(context)
-                .load(Uri.parse(value))
+                .load(value)
+                .placeholder(R.drawable.paisagem)
+                .error(R.drawable.ic_save_outline)
                 .into(binding.imageViewPostContent)
         }
 
+    private var _postOwner: String = DEFAULT_PROFILE_NAME
+
     var postOwner: String
-        get() = DEFAULT_PROFILE_NAME
+        get() = _postOwner
         set(value) {
+            _postOwner = value
             binding.textViewPostOwner.text = value
         }
 
@@ -81,7 +87,7 @@ class PostView @JvmOverloads constructor(
             value?.let {
                 val description = SpannableStringBuilder()
                     .bold { append(postOwner) }
-                    .append(value)
+                    .append(" " + value)
                 binding.textViewDescription.text = description
             }
         }

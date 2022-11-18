@@ -14,11 +14,11 @@ data class Comment(
     val id: Int,
 
     @SerializedName("user_has_stories")
-    val user_has_stories: Boolean,
+    val userHasStories: Boolean,
 
     @SerializedName("user_id")
-    val user_id: Int,
+    val userId: Int,
 
     @SerializedName("user_nickname")
-    val user_nickname: String
+    val userNickname: String
 ) : Parcelable

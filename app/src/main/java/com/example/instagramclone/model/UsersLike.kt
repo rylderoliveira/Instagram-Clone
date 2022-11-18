@@ -8,8 +8,8 @@ import kotlinx.android.parcel.Parcelize
 data class UsersLike(
 
     @SerializedName("user_id")
-    val user_id: Int,
+    val userId: Int,
 
     @SerializedName("user_nickname")
-    val user_nickname: String
+    val userNickname: String
 ) : Parcelable
