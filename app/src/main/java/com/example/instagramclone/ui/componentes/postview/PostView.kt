@@ -68,8 +68,8 @@ class PostView @JvmOverloads constructor(
     var isPostSaved: Boolean
         get() = false
         set(value) {
-            if (value) binding.imageButtonLike.setImageDrawable(defaultIconSaveFilled)
-            else binding.imageButtonLike.setImageDrawable(defaultIconSaveOutline)
+            if (value) binding.imageButtonSave.setImageDrawable(defaultIconSaveFilled)
+            else binding.imageButtonSave.setImageDrawable(defaultIconSaveOutline)
         }
 
     var likesCount: Int?
