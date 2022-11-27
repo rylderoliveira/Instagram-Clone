@@ -9,6 +9,8 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.text.bold
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import com.bumptech.glide.request.RequestOptions
 import com.example.instagramclone.R
 import com.example.instagramclone.databinding.ViewPostViewBinding
 
@@ -35,6 +37,7 @@ class PostView @JvmOverloads constructor(
             Glide.with(context)
                 .load(value)
                 .placeholder(R.drawable.paisagem)
+                .apply(RequestOptions.bitmapTransform(CircleCrop()))
                 .error(R.drawable.ic_save_outline)
                 .into(binding.imageViewPostProfile)
         }
