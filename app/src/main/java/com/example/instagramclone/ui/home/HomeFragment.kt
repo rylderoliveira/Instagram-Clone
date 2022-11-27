@@ -25,7 +25,7 @@ class HomeFragment : Fragment(), HomeContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter = HomePresenter(this)
-        presenter.getSinglePost()
+        presenter.getPosts()
     }
 
     override fun showPosts(posts: MutableList<Post>) {

@@ -1,6 +1,5 @@
 package com.example.instagramclone.ui.home
 
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.example.instagramclone.R
@@ -19,7 +18,6 @@ class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             commentsCount = item.comments.size
             postDescription = item.description
             imageProfile = item.ownerPhotoUrl
-            Log.i("Rylder", "Owner $postOwner")
         }
     }
 }
