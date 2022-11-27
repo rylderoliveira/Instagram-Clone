@@ -1,4 +1,4 @@
-package com.example.instagramclone.ui.home
+package com.example.instagramclone.core
 
 import com.example.instagramclone.model.Post
 import retrofit2.Call

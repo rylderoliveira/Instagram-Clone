@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.instagramclone.databinding.FragmentHomeBinding
 import com.example.instagramclone.model.Post
+import com.example.instagramclone.ui.home.adapter.PostAdapter
 
 class HomeFragment : Fragment(), HomeContract.View {
 

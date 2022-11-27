@@ -1,6 +1,5 @@
 package com.example.instagramclone.core
 
-import com.example.instagramclone.ui.home.PostService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
