@@ -53,6 +53,9 @@ class PostView @JvmOverloads constructor(
         }
 
     private var _postOwner: String = DEFAULT_PROFILE_NAME
+    private var _likesCount: Int? = null
+    private var _isPostLiked: Boolean = false
+    private var _isPostSaved: Boolean = false
 
     var postOwner: String
         get() = _postOwner
@@ -62,23 +65,26 @@ class PostView @JvmOverloads constructor(
         }
 
     var isPostLiked: Boolean
-        get() = false
+        get() = _isPostLiked
         set(value) {
+            _isPostLiked = value
             if (value) binding.imageButtonLike.setImageDrawable(defaultIconLikeFilled)
             else binding.imageButtonLike.setImageDrawable(defaultIconLikeOutline)
         }
 
     var isPostSaved: Boolean
-        get() = false
+        get() = _isPostSaved
         set(value) {
+            _isPostSaved = value
             if (value) binding.imageButtonSave.setImageDrawable(defaultIconSaveFilled)
             else binding.imageButtonSave.setImageDrawable(defaultIconSaveOutline)
         }
 
     var likesCount: Int?
-        get() = null
+        get() = _likesCount
         set(value) {
             value?.let {
+                _likesCount = value
                 val likesText = "$value curtidas"
                 binding.textViewLikesCount.text = likesText
             }
@@ -107,6 +113,22 @@ class PostView @JvmOverloads constructor(
     init {
         binding = ViewPostViewBinding.inflate(LayoutInflater.from(context))
         addView(binding.root)
+        initListeners()
+    }
+
+    private fun initListeners() {
+        binding.imageButtonLike.setOnClickListener {
+            if (isPostLiked) {
+                likesCount = likesCount?.minus(1)
+                isPostLiked = false
+            } else {
+                likesCount = likesCount?.plus(1)
+                isPostLiked = true
+            }
+        }
+        binding.imageButtonSave.setOnClickListener {
+            isPostSaved = !isPostSaved
+        }
     }
 
     private fun getDrawable(resId: Int) : Drawable? {
