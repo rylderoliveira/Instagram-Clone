@@ -10,11 +10,12 @@
         <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">@android:color/black</item>
         <!-- Customize your theme here. -->
         <item name="actionBarStyle">@style/MyActionBar</item>
         <item name="bottomNavigationStyle">@style/MyBottomNavigation</item>
         <item name="android:backgroundTint">@color/black</item>
+        <item name="iconColor">@color/white</item>
     </style>
 
     <style name="MyActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
@@ -32,5 +33,9 @@
         <item name="itemTextAppearanceActive">@color/white</item>
         <item name="itemTextColor">@color/white</item>
         <item name="itemIconTint">@color/white</item>
+    </style>
+
+    <style name="MyWhiteText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/white</item>
     </style>
 </resources>
