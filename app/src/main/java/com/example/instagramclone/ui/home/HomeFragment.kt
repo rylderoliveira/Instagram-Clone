@@ -1,5 +1,6 @@
 package com.example.instagramclone.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.example.instagramclone.databinding.FragmentHomeBinding
 import com.example.instagramclone.model.Post
 import com.example.instagramclone.ui.componentes.postview.adapter.PostAdapter
+import com.example.instagramclone.ui.error.ErrorActivity
 import org.koin.android.ext.android.inject
 import org.koin.core.context.loadKoinModules
 import org.koin.core.parameter.parametersOf
@@ -50,5 +52,11 @@ class HomeFragment : Fragment(), HomeContract.View {
     override fun hideLoading() {
         binding.shimmerHome.stopShimmer()
         binding.shimmerHome.visibility = View.GONE
+    }
+
+    override fun showError(cause: String?) {
+        val intent = Intent(activity, ErrorActivity::class.java)
+        intent.putExtra("cause", cause.toString())
+        startActivity(intent)
     }
 }

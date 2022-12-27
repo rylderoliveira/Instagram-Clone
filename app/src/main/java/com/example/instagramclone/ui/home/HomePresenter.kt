@@ -1,6 +1,7 @@
 package com.example.instagramclone.ui.home
 
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 class HomePresenter(
@@ -8,24 +9,25 @@ class HomePresenter(
     val repository: HomeRepository
 ) : HomeContract.Presenter {
 
-    override fun getSinglePost() {
-        repository.getSinglePost()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe { view.showLoading() }
-            .doOnSuccess { view.hideLoading() }
-            .subscribe()
-    }
+    private val disposable = CompositeDisposable()
 
     override fun getPosts() {
-        repository.getPosts()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe { view.showLoading() }
-            .doOnSuccess {
-                view.hideLoading()
-                view.showPosts(it)
-            }
-            .subscribe()
+        disposable.add(
+            repository.getPosts()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { view.showLoading() }
+                .subscribe(
+                    /* onSuccess = */
+                    {
+                        view.hideLoading()
+                        view.showPosts(it)
+                    },
+                    /* onError = */
+                    {
+                        view.showError(it.message)
+                    },
+                )
+        )
     }
 }

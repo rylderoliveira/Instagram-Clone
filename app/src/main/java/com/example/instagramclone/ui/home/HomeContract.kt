@@ -8,10 +8,10 @@ interface HomeContract {
         fun showEmptyPosts()
         fun showLoading()
         fun hideLoading()
+        fun showError(cause: String?)
     }
 
     interface Presenter {
-        fun getSinglePost()
         fun getPosts()
     }
 }

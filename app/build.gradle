@@ -46,7 +46,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     // Fragments
-    implementation 'androidx.fragment:fragment-ktx:1.5.4'
+    implementation 'androidx.fragment:fragment-ktx:1.5.5'
 
     // Gson
     implementation 'com.google.code.gson:gson:2.10'
@@ -76,6 +76,9 @@ dependencies {
 
     // Dependency Injection
     implementation "io.insert-koin:koin-android:3.2.0"
+
+    // UI Components
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
