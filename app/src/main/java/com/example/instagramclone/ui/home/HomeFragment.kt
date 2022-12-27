@@ -1,15 +1,16 @@
 package com.example.instagramclone.ui.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
+import com.example.instagramclone.R
 import com.example.instagramclone.databinding.FragmentHomeBinding
 import com.example.instagramclone.model.Post
 import com.example.instagramclone.ui.componentes.postview.adapter.PostAdapter
-import com.example.instagramclone.ui.error.ErrorActivity
+import com.example.instagramclone.ui.error.ErrorFragment
 import org.koin.android.ext.android.inject
 import org.koin.core.context.loadKoinModules
 import org.koin.core.parameter.parametersOf
@@ -55,8 +56,8 @@ class HomeFragment : Fragment(), HomeContract.View {
     }
 
     override fun showError(cause: String?) {
-        val intent = Intent(activity, ErrorActivity::class.java)
-        intent.putExtra("cause", cause.toString())
-        startActivity(intent)
+        parentFragmentManager.commit {
+            replace(R.id.fragment_container_view_main, ErrorFragment(cause))
+        }
     }
 }
