@@ -8,9 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.example.instagramclone.R
 import com.example.instagramclone.databinding.FragmentErrorBinding
-import com.example.instagramclone.ui.home.HomeFragment
 
-class ErrorFragment(private val cause: String?) : Fragment() {
+class ErrorFragment(private val cause: String?, private val fragment: Fragment) : Fragment() {
 
     private lateinit var binding: FragmentErrorBinding
 
@@ -24,10 +23,26 @@ class ErrorFragment(private val cause: String?) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initListeners()
+        if ( cause == null ) showOnEmptyList() else showOnError()
+    }
+
+    private fun showOnEmptyList() {
+        binding.textViewErrorTitle.text = getString(R.string.empty_list_title)
         binding.textViewErrorCause.text = cause
+        binding.imageViewError.setImageResource(R.drawable.empty_list_image)
+    }
+
+    private fun showOnError() {
+        binding.textViewErrorTitle.text = getString(R.string.error_title)
+        binding.textViewErrorCause.text = cause
+        binding.imageViewError.setImageResource(R.drawable.error_image)
+    }
+
+    private fun initListeners() {
         binding.swipeRefreshError.setOnRefreshListener {
             parentFragmentManager.commit {
-                replace(R.id.fragment_container_view_main, HomeFragment())
+                replace(R.id.fragment_container_view_main, fragment)
             }
         }
     }

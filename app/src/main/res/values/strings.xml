@@ -11,5 +11,7 @@
     <string name="hello_store_fragment">Hello store fragment</string>
     <string name="hello_profile_fragment">Hello profile fragment</string>
     <string name="error_title">Vish, algo deu errado!!!</string>
+    <string name="empty_list_title">Nenhum post encontrado</string>
+    <string name="empty_list_cause">Ainda não encontramos posts para você \n Tente mais tarde</string>
     <string name="image_error">Imagem de error</string>
 </resources>

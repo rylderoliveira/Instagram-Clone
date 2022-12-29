@@ -21,10 +21,11 @@ class HomePresenter(
                     /* onSuccess = */
                     {
                         view.hideLoading()
-                        view.showPosts(it)
+                        if (it.isNotEmpty()) view.showPosts(it) else view.showEmptyPosts()
                     },
                     /* onError = */
                     {
+                        view.hideLoading()
                         view.showError(it.message)
                     },
                 )

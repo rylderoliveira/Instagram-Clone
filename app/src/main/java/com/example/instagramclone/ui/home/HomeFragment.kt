@@ -34,6 +34,13 @@ class HomeFragment : Fragment(), HomeContract.View {
         super.onViewCreated(view, savedInstanceState)
         loadKoinModules(modules)
         presenter.getPosts()
+        initListeners()
+    }
+
+    private fun initListeners() {
+        binding.root.setOnRefreshListener {
+            presenter.getPosts()
+        }
     }
 
     override fun showPosts(posts: MutableList<Post>) {
@@ -42,7 +49,7 @@ class HomeFragment : Fragment(), HomeContract.View {
     }
 
     override fun showEmptyPosts() {
-        TODO("Not yet implemented")
+        showErrorFragment()
     }
 
     override fun showLoading() {
@@ -51,13 +58,23 @@ class HomeFragment : Fragment(), HomeContract.View {
     }
 
     override fun hideLoading() {
+        hideRefreshIcon()
         binding.shimmerHome.stopShimmer()
         binding.shimmerHome.visibility = View.GONE
     }
 
     override fun showError(cause: String?) {
+        hideRefreshIcon()
+        showErrorFragment(cause)
+    }
+
+    private fun showErrorFragment(cause: String? = null) {
         parentFragmentManager.commit {
-            replace(R.id.fragment_container_view_main, ErrorFragment(cause))
+            replace(R.id.fragment_container_view_main, ErrorFragment(cause, this@HomeFragment))
         }
+    }
+
+    private fun hideRefreshIcon() {
+        binding.root.isRefreshing = false
     }
 }
