@@ -1,4 +1,4 @@
-package com.example.instagramclone
+package com.example.instagramclone.ui
 
 import android.os.Bundle
 import android.view.MenuItem
@@ -6,6 +6,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
+import com.example.instagramclone.R
 import com.example.instagramclone.databinding.ActivityMainBinding
 import com.example.instagramclone.ui.home.HomeFragment
 import com.example.instagramclone.ui.profile.ProfileFragment

@@ -6,9 +6,12 @@ interface HomeContract {
     interface View {
         fun showPosts(posts: MutableList<Post>)
         fun showEmptyPosts()
+        fun showLoading()
+        fun hideLoading()
+        fun showError(cause: String?)
     }
+
     interface Presenter {
-        fun getSinglePost()
         fun getPosts()
     }
 }

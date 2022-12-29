@@ -1,4 +1,4 @@
-package com.example.instagramclone.ui.home.adapter
+package com.example.instagramclone.ui.componentes.postview.adapter
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
